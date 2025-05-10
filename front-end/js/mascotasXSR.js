@@ -1,0 +1,63 @@
+async function loadMascotas() {
+  const mascotasList = document.getElementById('mascotasList');
+  const errorMessage = document.getElementById('errorMessage');
+  mascotasList.innerHTML = '';
+  errorMessage.style.display = 'none';
+
+  try {
+    const response = await fetch('http://localhost:3000/mascotaXSR', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const mascotas = await response.json();
+    if (mascotas.length === 0) {
+      mascotasList.innerHTML = '<p>No hay mascotas registradas.</p>';
+      return;
+    }
+
+    mascotas.forEach(mascota => {
+      const card = document.createElement('div');
+      card.className = 'mascota-card';
+      card.innerHTML = `
+        <div class="mascota-info">
+          <img src="${mascota.foto || '/imgs/default-pet.svg'}" alt="${mascota.nombre}" class="mascota-img">
+          <div class="mascota-details">
+            <h3>${mascota.nombre}</h3>
+            <p>${mascota.razas?.nombre || 'Sin raza'}</p>
+          </div>
+        </div>
+        <div class="actions">
+          <button class="edit-btn" data-id="${mascota.id}">
+            <img src="/imgs/btn-edit.svg" alt="Editar">
+          </button>
+          <button class="delete-btn" data-id="${mascota.id}">
+            <img src="/imgs/btn-delete.svg" alt="Eliminar">
+          </button>
+        </div>
+      `;
+      mascotasList.appendChild(card);
+    });
+  } catch (error) {
+    console.error('Error al conectar con el servidor:', error);
+    errorMessage.textContent = 'Error al cargar las mascotas. Intenta de nuevo.';
+    errorMessage.style.display = 'block';
+  }
+}
+document.getElementById('closeMascotasBtn').addEventListener('click', () => {
+  window.location.href = '/indexXSR.html';
+});
+
+document.getElementById('addMascotaBtn').addEventListener('click', () => {
+  window.location.href = '/agregarXSR.html';
+});
+
+// Cargar las mascotas al iniciar la página
+document.addEventListener('DOMContentLoaded', loadMascotas);

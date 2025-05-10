@@ -1,0 +1,70 @@
+/* arregla la posicion dek¿l formulario si arriba o bajo */
+.static-content {
+  position: fixed;
+  bottom: 2%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+}
+/**el que tiene el orden del fromulario*/
+#loginView form {
+  border-radius: 20px;
+  padding: 13px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 900px; /**grande de los input */
+  text-align: center;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+}
+/* configura los campos que se llenan */
+#loginView form input {
+  padding: 12px 70px; /* horizontalmente */
+  border: none;
+  border-radius: 40px;
+  font-size: 16px;
+  outline: none;
+  background: rgba(255, 255, 255, 0.178); 
+  color: #333;
+  backdrop-filter: blur(4px);
+  -webkit-border-radius: 40px;
+  -moz-border-radius: 40px;
+  -ms-border-radius: 40px;
+  -o-border-radius: 40px;
+}
+
+#loginView form input::placeholder {
+  color: #666;
+}
+
+#loginView form input:focus {
+  background: rgba(255, 255, 255, 0.6);
+}
+
+#loginView form button {
+  padding: 12px 100px; /* Más alargado horizontalmente */
+  background-color: rgba(27, 53, 94, 0.9); /* Mayor opacidad */
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  -ms-border-radius: 50px;
+  -o-border-radius: 50px;
+}
+
+#loginView form button:hover {
+  background-color: rgba(27, 53, 94, 1);
+}

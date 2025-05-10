@@ -6,7 +6,6 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../generated/prisma"
 }
 
 datasource db {
@@ -22,7 +21,7 @@ model categorias {
 
 model generos {
   id       Int        @id @default(autoincrement())
-  nombre   Int
+  nombre   String     @db.VarChar(80)
   mascotas mascotas[]
 }
 
@@ -52,13 +51,14 @@ model razas {
 model usuarios {
   id         Int      @id @default(autoincrement())
   nombre     String   @db.VarChar(50)
-  email      String   @db.VarChar(80)
-  password   String   @db.VarChar(40)
+  email      String   @unique @db.VarChar(80) 
+  password String @db.VarChar(100)
   mascota_id Int
   mascotas   mascotas @relation(fields: [mascota_id], references: [id], onUpdate: Restrict, map: "usuario_mascota")
 
   @@index([mascota_id], map: "usuario_mascota")
 }
+
 
 enum estado{
   Adoptado

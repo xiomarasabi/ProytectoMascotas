@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adicionar Mascota</title>
+  <link rel="stylesheet" href="./css/stylesXSR.css">
+  <link rel="stylesheet" href="./css/agregarXSR.css">
+</head>
+<body>
+  <div class="container view-agregar">
+    <img src="/imgs/bg.svg" alt="Fondo general" class="bg bg-general">
+    <div id="agregarView" class="static-content">
+      <header>
+        <button id="backBtn" class="back-btn">
+          <img src="/imgs/btn-back.svg" alt="Volver" class="back-icon">
+        </button>
+        <h1>Adicionar Mascota</h1>
+        <button id="closeBtn" class="close-btn">
+          <img src="/imgs/btn-close.svg" alt="Cerrar" class="close-icon">
+        </button>
+      </header>
+      <form id="agregarForm">
+        <div class="foto-placeholder">
+          <img src="/imgs/camera-icon.svg" alt="Subir foto" class="camera-icon">
+        </div>
+        <input type="text" id="nombre" placeholder="Nombre" required>
+        <select id="raza" required>
+          <option value="">Seleccione Raza...</option>
+          <!-- Opciones se cargarán dinámicamente -->
+        </select>
+        <select id="categoria" required>
+          <option value="">Seleccione Categoría...</option>
+          <!-- Opciones se cargarán dinámicamente -->
+        </select>
+        <input type="file" id="foto" accept="image/*" placeholder="Subir Foto">
+        <select id="genero" required>
+          <option value="">Seleccione Género...</option>
+          <!-- Opciones se cargarán dinámicamente -->
+        </select>
+        <button type="submit" class="save-btn">Guardar</button>
+        <p id="errorMessage" class="error-message"></p>
+      </form>
+    </div>
+  </div>
+  <script src="/js/agregarXSR.js"></script>
+</body>
+</html>

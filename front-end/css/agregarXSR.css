@@ -1,0 +1,107 @@
+/* Contenedor principal */
+.static-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+  padding: 20px;
+  background: #2c3e50;
+  color: #fff;
+}
+
+/* Encabezado */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 20px;
+}
+
+header h1 {
+  font-size: 1.5em;
+  margin: 0;
+}
+
+.back-btn, .close-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.back-icon, .close-icon {
+  width: 24px;
+  height: 24px;
+}
+
+/* Formulario */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.foto-placeholder {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 20px;
+  background: #34495e;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.camera-icon {
+  width: 50px;
+  height: 50px;
+  filter: brightness(0) invert(1);
+}
+
+input[type="text"], input[type="file"], select {
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background: #34495e;
+  color: #fff;
+  font-size: 1em;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+input[type="file"] {
+  padding: 10px;
+}
+
+input[type="text"]::placeholder, select {
+  color: #bdc3c7;
+}
+
+.save-btn {
+  padding: 12px;
+  background-color: #34c759;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.save-btn:hover {
+  background-color: #2db54f;
+}
+
+/* Mensaje de error */
+.error-message {
+  color: #e74c3c;
+  font-size: 1em;
+  margin: 10px 0 0;
+  display: none;
+}

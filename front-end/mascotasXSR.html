@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Administrar Mascotas</title>
+  <link rel="stylesheet" href="./css/stylesXSR.css">
+  <link rel="stylesheet" href="./css/mascotasXSR.css">
+</head>
+<body>
+  <div class="container view-mascotas">
+    <img src="/imgs/bg.svg" alt="Fondo general" class="bg bg-general">
+    <div id="mascotasView" class="static-content">
+      <header>
+        <h2>Administrar Mascotas</h2>
+        <button id="closeMascotasBtn" class="close-btn">
+        <img src="/imgs/btn-close.svg" alt="Cerrar" class="close-icon">
+      </button>
+      </header>
+      <br>
+      <button id="addMascotaBtn" class="add-btn">
+          <span class="add-icon">+</span>
+          Adicionar
+        </button>
+      <div id="mascotasList" class="mascotas-list">
+        <!-- Las mascotas se agregarán dinámicamente con JavaScript -->
+      </div>
+      <p id="errorMessage" class="error-message"></p>
+    </div>
+  </div>
+  <script src="/js/mascotasXSR.js"></script>
+</body>
+</html>

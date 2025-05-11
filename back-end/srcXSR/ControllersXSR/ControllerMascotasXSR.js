@@ -60,14 +60,24 @@ const obtenerMascotaPorIdXSR = async (req, res) => {
   }
 };
 
+
 const actualizarMascotaXSR = async (req, res) => {
   const id = parseInt(req.params.id);
   const { nombre, estado, raza_id, categoria_id, genero_id, usuario_id } = req.body;
-  const foto = req.file ? `/public/img/${req.file.filename}` : req.body.foto; // Usa la nueva foto o la existente
 
   if (isNaN(id)) return res.status(400).json({ error: "ID no válido" });
   if (!nombre || !raza_id || !categoria_id || !genero_id || !usuario_id || !estado) {
-    return res.status(400).json({ error: 'Todos los campos son obligatorios' });
+    return res.status(400).json({ error: "Todos los campos son obligatorios" });
+  }
+
+  // Manejar la foto: si se sube una nueva, usar req.file; si no, mantener la existente
+  let foto;
+  if (req.file) {
+    foto = `/public/img/${req.file.filename}`;
+  } else {
+    const mascotaExistente = await prisma.mascotas.findUnique({ where: { id } });
+    if (!mascotaExistente) return res.status(404).json({ error: "Mascota no encontrada" });
+    foto = mascotaExistente.foto;
   }
 
   try {

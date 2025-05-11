@@ -40,7 +40,7 @@ async function loadOptions() {
     razas.forEach(raza => {
       const option = document.createElement('option');
       option.value = raza.id;
-      option.textContent = raza.name || raza.name;
+      option.textContent = raza.name || raza.nombre;
       razaSelect.appendChild(option);
     });
 
@@ -114,7 +114,7 @@ async function loadMascotaData() {
     categoriaSelect.value = mascota.categoria_id ? mascota.categoria_id.toString() : '';
     generoSelect.value = mascota.genero_id ? mascota.genero_id.toString() : '';
     usuarioSelect.value = mascota.usuario_id ? mascota.usuario_id.toString() : '';
-    estadoSelect.value = mascota.estado || 'activo';
+    estadoSelect.value = mascota.estado || 'Adoptado';
     editarFoto.src = `http://localhost:3000${mascota.foto || '/imgs/default-pet.svg'}`;
 
   } catch (error) {

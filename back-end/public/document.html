@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Documentación API de Mascotas</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 20px;
+      background-color: #f4f4f4;
+    }
+    h1, h2, h3 {
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .endpoint {
+      background-color: #fff;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    .endpoint h3 {
+      margin-top: 0;
+      color: #0066cc;
+    }
+    .method {
+      font-weight: bold;
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 3px;
+      display: inline-block;
+      margin-right: 10px;
+    }
+    .method.get { background-color: #28a745; }
+    .method.post { background-color: #007bff; }
+    .method.put { background-color: #ffc107; color: #333; }
+    .method.patch { background-color: #ff851b; }
+    .method.delete { background-color: #dc3545; }
+    .url {
+      font-family: monospace;
+      background-color: #f8f9fa;
+      padding: 5px;
+      border-radius: 3px;
+    }
+    pre {
+      background-color: #f8f9fa;
+      padding: 10px;
+      border-radius: 3px;
+      overflow-x: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0;
+    }
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+    th, td {
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+  <h1>Documentación API de Mascotas</h1>
+  <p>Esta API permite gestionar información sobre mascotas, incluyendo creación, consulta, actualización y eliminación. Todos los endpoints requieren autenticación mediante un token JWT en el encabezado <code>Authorization: Bearer &lt;token&gt;</code>.</p>
+
+  <div class="endpoint">
+    <span class="method post">POST</span>
+    <span class="url">/mascotaXSR</span>
+    <h3>Crear una Mascota</h3>
+    <p>Crea una nueva mascota en la base de datos.</p>
+    <h4>Parámetros (multipart/form-data):</h4>
+    <table>
+      <tr>
+        <th>Campo</th>
+        <th>Tipo</th>
+        <th>Descripción</th>
+        <th>Requerido</th>
+      </tr>
+      <tr>
+        <td>foto</td>
+        <td>file</td>
+        <td>Imagen de la mascota</td>
+        <td>Sí</td>
+      </tr>
+      <tr>
+        <td>nombre</td>
+        <td>string</td>
+        <td>Nombre de la mascota (máx. 80 caracteres)</td>
+        <td>Sí</td>
+      </tr>
+      <tr>
+        <td>estado</td>
+        <td>string</td>
+        <td>Estado de la mascota ("Adoptado" o "Disponible")</td>
+        <td>Sí</td>
+      </tr>
+      <tr>
+        <td>raza_id</td>
+        <td>integer</td>
+        <td>ID de la raza</td>
+        <td>Sí</td>
+      </tr>
+      <tr>
+        <td>categoria_id</td>
+        <td>integer</td>
+        <td>ID de la categoría</td>
+        <td>Sí</td>
+      </tr>
+      <tr>
+        <td>genero_id</td>
+        <td>integer</td>
+        <td>ID del género</td>
+        <td>Sí</td>
+      </tr>
+      <tr>
+        <td>usuario_id</td>
+        <td>integer</td>
+        <td>ID del usuario</td>
+        <td>Sí</td>
+      </tr>
+    </table>
+    <h4>Ejemplo de Respuesta (Éxito):</h4>
+    <pre>
+{
+  "message": "Mascota creada correctamente"
+}
+    </pre>
+    <h4>Ejemplo de Respuesta (Error):</h4>
+    <pre>
+{
+  "error": "Todos los campos son obligatorios"
+}
+    </pre>
+  </div>
+
+  <div class="endpoint">
+    <span class="method get">GET</span>
+    <span class="url">/mascotaXSR</span>
+    <h3>Listar Todas las Mascotas</h3>
+    <p>Obtiene una lista de todas las mascotas, incluyendo información relacionada (razas, categorías, géneros, usuarios).</p>
+    <h4>Parámetros:</h4>
+    <p>Ninguno</p>
+    <h4>Ejemplo de Respuesta (Éxito):</h4>
+    <pre>
+[
+  {
+    "id": 1,
+    "foto": "/public/img/1746975078037-WIN_20250415_21_52_53_Pro.jpg",
+    "nombre": "Luna",
+    "estado": "Adoptado",
+    "raza_id": 1,
+    "categoria_id": 1,
+    "genero_id": 1,
+    "usuario_id": 3,
+    "razas": { "id": 1, "nombre": "Labrador" },
+    "categorias": { "id": 1, "nombre": "Perro" },
+    "generos": { "id": 1, "nombre": "Hembra" },
+    "usuarios": { "id": 3, "nombre": "Juan Pérez" }
+  },
+  ...
+]
+    </pre>
+    <h4>Ejemplo de Respuesta (Error):</h4>
+    <pre>
+{
+  "error": "Error al listar mascotas"
+}
+    </pre>
+  </div>
+
+  <div class="endpoint">
+    <span class="method get">GET</span>
+    <span class="url">/mascotaXSR/:id</span>
+    <h3>Obtener una Mascota por ID</h3>
+    <p>Obtiene los detalles de una mascota específica por su ID.</p>
+    <h4>Parámetros (URL):</h4>
+    <table>
+      <tr>
+        <th>Parámetro</th>
+        <th>Tipo</th>
+        <th>Descripción</th>
+        <th>Requerido</th>
+      </tr>
+      <tr>
+        <td>id</td>
+        <td>integer</td>
+        <td>ID de la mascota</td>
+        <td>Sí</td>
+      </tr>
+    </table>
+    <h4>Ejemplo de Respuesta (Éxito):</h4>
+    <pre>
+{
+  "id": 1,
+  "foto": "/public/img/1746975078037-WIN_20250415_21_52_53_Pro.jpg",
+  "nombre": "Luna",
+  "estado": "Adoptado",
+  "raza_id": 1,
+  "categoria_id": 1,
+  "genero_id": 1,
+  "usuario_id": 3,
+  "razas": { "id": 1, "nombre": "Labrador" },
+  "categorias": { "id": 1, "nombre": "Perro" },
+  "generos": { "id": 1, "nombre": "Hembra" },
+  "usuarios": { "id": 3, "nombre": "Juan Pérez" }
+}
+    </pre>
+    <h4>Ejemplo de Respuesta (Error):</h4>
+    <pre>
+{
+  "error": "Mascota no encontrada"
+}
+    </pre>
+  </div>
+
+  <div class="endpoint">
+    <span class="method put">PUT</span>
+    <span class="url">/mascotaXSR/:id</span>
+    <h3>Actualizar una Mascota</h3>
+    <p>Actualiza todos los campos de una mascota específica por su ID. La foto es opcional.</p>
+    <h4>Parámetros (URL):</h4>
+    <table>
+      <tr>
+        <th>Parámetro</th>
+        <th>Tipo</th>
+        <th>Descripción</th>
+        <th>Requerido</th>
+      </tr>
+      <tr>
+        <td>id</td>
+        <td>integer</td>
+        <td>ID de la mascota</td>
+        <td>Sí</td>
+      </tr>
+    </table>
+    <h4>Parámetros (multipart/form-data):</h4>
+    <table>
+      <tr>
+        <th>Campo</th>
+        <th>Tipo</th>
+        <th>Descripción</th>
+        <th>Requerido</th>
+      </tr>
+      <tr>
+        <td>foto</td>
+        <td>file</td>
+        <td>Nueva imagen de la mascota</td>
+        <td>No</td>
+      </tr>
+      <tr>
+        <td>nombre</td>
+        <td>string</td>
+        <td>Nombre de la mascota (máx. 80 caracteres)</td>
+        <td>Sí</td>
+      </tr>
+      <tr>
+        <td>estado</td>
+        <td>string</td>
+        <td>Estado de la mascota ("Adoptado" o "Disponible")</td>
+        <td>Sí</td>
+      </tr>
+      <tr>
+        <td>raza_id</td>
+        <td>integer</td>
+        <td>ID de la raza</td>
+        <td>Sí</td>
+      </tr>
+      <tr>
+        <td>categoria_id</td>
+        <td>integer</td>
+        <td>ID de la categoría</td>
+        <td>Sí</td>
+      </tr>
+      <tr>
+        <td>genero_id</td>
+        <td>integer</td>
+        <td>ID del género</td>
+        <td>Sí</td>
+      </tr>
+      <tr>
+        <td>usuario_id</td>
+        <td>integer</td>
+        <td>ID del usuario</td>
+        <td>Sí</td>
+      </tr>
+    </table>
+    <h4>Ejemplo de Respuesta (Éxito):</h4>
+    <pre>
+{
+  "message": "Mascota actualizada correctamente"
+}
+    </pre>
+    <h4>Ejemplo de Respuesta (Error):</h4>
+    <pre>
+{
+  "error": "Todos los campos son obligatorios"
+}
+    </pre>
+  </div>
+
+  <div class="endpoint">
+    <span class="method patch">PATCH</span>
+    <span class="url">/mascotaXSR/:id</span>
+    <h3>Actualización Parcial de una Mascota</h3>
+    <p>Actualiza parcialmente los campos de una mascota específica por su ID.</p>
+    <h4>Parámetros (URL):</h4>
+    <table>
+      <tr>
+        <th>Parámetro</th>
+        <th>Tipo</th>
+        <th>Descripción</th>
+        <th>Requerido</th>
+      </tr>
+      <tr>
+        <td>id</td>
+        <td>integer</td>
+        <td>ID de la mascota</td>
+        <td>Sí</td>
+      </tr>
+    </table>
+    <h4>Parámetros (application/json):</h4>
+    <table>
+      <tr>
+        <th>Campo</th>
+        <th>Tipo</th>
+        <th>Descripción</th>
+        <th>Requerido</th>
+      </tr>
+      <tr>
+        <td>foto</td>
+        <td>string</td>
+        <td>Ruta de la nueva imagen de la mascota</td>
+        <td>No</td>
+      </tr>
+      <tr>
+        <td>nombre</td>
+        <td>string</td>
+        <td>Nombre de la mascota (máx. 80 caracteres)</td>
+        <td>No</td>
+      </tr>
+      <tr>
+        <td>estado</td>
+        <td>string</td>
+        <td>Estado de la mascota ("Adoptado" o "Disponible")</td>
+        <td>No</td>
+      </tr>
+      <tr>
+        <td>raza_id</td>
+        <td>integer</td>
+        <td>ID de la raza</td>
+        <td>No</td>
+      </tr>
+      <tr>
+        <td>categoria_id</td>
+        <td>integer</td>
+        <td>ID de la categoría</td>
+        <td>No</td>
+      </tr>
+      <tr>
+        <td>genero_id</td>
+        <td>integer</td>
+        <td>ID del género</td>
+        <td>No</td>
+      </tr>
+      <tr>
+        <td>usuario_id</td>
+        <td>integer</td>
+        <td>ID del usuario</td>
+        <td>No</td>
+      </tr>
+    </table>
+    <h4>Ejemplo de Solicitud:</h4>
+    <pre>
+{
+  "nombre": "Luna",
+  "estado": "Disponible"
+}
+    </pre>
+    <h4>Ejemplo de Respuesta (Éxito):</h4>
+    <pre>
+{
+  "message": "Mascota actualizada correctamente"
+}
+    </pre>
+    <h4>Ejemplo de Respuesta (Error):</h4>
+    <pre>
+{
+  "error": "Error al hacer actualización parcial de la mascota"
+}
+    </pre>
+  </div>
+
+  <div class="endpoint">
+    <span class="method delete">DELETE</span>
+    <span class="url">/mascotaXSR/:id</span>
+    <h3>Eliminar una Mascota</h3>
+    <p>Elimina una mascota específica por su ID.</p>
+    <h4>Parámetros (URL):</h4>
+    <table>
+      <tr>
+        <th>Parámetro</th>
+        <th>Tipo</th>
+        <th>Descripción</th>
+        <th>Requerido</th>
+      </tr>
+      <tr>
+        <td>id</td>
+        <td>integer</td>
+        <td>ID de la mascota</td>
+        <td>Sí</td>
+      </tr>
+    </table>
+    <h4>Ejemplo de Respuesta (Éxito):</h4>
+    <pre>
+{
+  "message": "Mascota eliminada correctamente"
+}
+    </pre>
+    <h4>Ejemplo de Respuesta (Error):</h4>
+    <pre>
+{
+  "error": "Error al eliminar la mascota"
+}
+    </pre>
+  </div>
+</body>
+</html>

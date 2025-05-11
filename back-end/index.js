@@ -44,9 +44,13 @@ app.use(routerMascotaXSR);
 app.use((req, res) => {
   res.status(404).json({ error: 'Ruta no encontrada' });
 });
+// Ruta para la documentación
+app.get('/document', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'public', 'document.html'));
+});
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
-  //console.log(`Documentación disponible en http://localhost:${PORT}/document`);
+  console.log(`Documentación disponible en http://localhost:${PORT}/public/document.html`);
 });

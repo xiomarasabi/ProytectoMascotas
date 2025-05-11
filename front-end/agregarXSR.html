@@ -22,7 +22,7 @@
       </header>
       <form id="agregarForm">
         <div class="foto-placeholder">
-          <img src="/imgs/camera-icon.svg" alt="Subir foto" class="camera-icon">
+          <img src="./imgs/photo-lg-0.svg" alt="Subir foto" class="camera-icon">
         </div>
         <input type="text" id="nombre" placeholder="Nombre" required>
         <select id="raza" required>
@@ -36,7 +36,14 @@
         <input type="file" id="foto" accept="image/*" placeholder="Subir Foto">
         <select id="genero" required>
           <option value="">Seleccione Género...</option>
-          <!-- Opciones se cargarán dinámicamente -->
+        </select>
+        <select id="usuario" required>
+          <option value="">Seleccione Usuario...</option>
+        </select>
+        <select id="estado" required>
+          <option value="">Seleccione Estado...</option>
+          <option value="Adoptado">Adoptado</option>
+          <option value="Disponible">Disponible</option>
         </select>
         <button type="submit" class="save-btn">Guardar</button>
         <p id="errorMessage" class="error-message"></p>

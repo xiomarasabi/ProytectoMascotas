@@ -33,13 +33,15 @@ model mascotas {
   raza_id      Int
   categoria_id Int
   genero_id    Int
+  usuario_id   Int?
   categorias   categorias @relation(fields: [categoria_id], references: [id], onUpdate: Restrict, map: "mas_ca")
   generos      generos    @relation(fields: [genero_id], references: [id], onUpdate: Restrict, map: "mas_ge")
   razas        razas      @relation(fields: [raza_id], references: [id], onUpdate: Restrict, map: "mas_ra")
-  usuarios     usuarios[]
+  usuarios     usuarios?   @relation(fields: [usuario_id], references: [id], onUpdate: Restrict, map: "usu_mascota")
   @@index([categoria_id], map: "mas_ca")
   @@index([genero_id], map: "mas_ge")
   @@index([raza_id], map: "mas_ra")
+  @@index([usuario_id], map: "usu_mascota")
 }
 
 model razas {
@@ -53,12 +55,8 @@ model usuarios {
   nombre     String   @db.VarChar(50)
   email      String   @unique @db.VarChar(80) 
   password String @db.VarChar(100)
-  mascota_id Int
-  mascotas   mascotas @relation(fields: [mascota_id], references: [id], onUpdate: Restrict, map: "usuario_mascota")
-
-  @@index([mascota_id], map: "usuario_mascota")
+  mascotas mascotas[]
 }
-
 
 enum estado{
   Adoptado

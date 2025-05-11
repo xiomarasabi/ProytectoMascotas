@@ -1,0 +1,167 @@
+/* Contenedor principal */
+.static-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 30px 20px;
+  background: linear-gradient(90deg, #2c3e69, #34495e);
+  overflow-y: auto;
+}
+
+/* Encabezado */
+header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+}
+
+header h2 {
+  font-size: 1.4em;
+  color: #fff;
+  margin: 0;
+  font-weight: normal;
+}
+
+/* Botón de volver */
+.back-btn {
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.back-icon {
+  width: 24px;
+  height: 24px;
+}
+
+/* Botón de cerrar */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.close-icon {
+  width: 24px;
+  height: 24px;
+}
+
+/* Tarjeta de edición */
+
+
+/* Imagen de la mascota */
+.editar-image {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  width: 100%;
+}
+
+.mascota-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #669bd4;
+}
+
+/* Formulario de edición */
+.editar-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* Campo de edición (ícono + texto) */
+.editar-field {
+  display: flex;
+  align-items: center;
+  background: #e1f1ff86;
+  padding: 8px 12px;
+  border-radius: 65px;
+  margin-bottom: 8px;
+  gap: 8px;
+  -webkit-border-radius: 65px;
+  -moz-border-radius: 65px;
+  -ms-border-radius: 65px;
+  -o-border-radius: 65px;
+}
+
+.info-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.editar-label {
+  font-size: 0.9em;
+  font-weight: bold;
+  color: #314488b4;
+  margin: 0;
+  width: 90px;
+}
+
+.editar-input { 
+  flex-grow: 15;
+  padding: 8px;
+  border: none;
+  background: transparent;
+  font-size: 0.8em;
+  color: #333;
+}
+
+.editar-input:focus {
+  outline: none;
+}
+
+select.editar-input {
+  width: 100%;
+  appearance: none;
+  background: transparent;
+  border: none;
+}
+
+input[type="file"].editar-input {
+  padding: 0;
+}
+
+.editar-submit {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #66d481;
+  color: white;
+  border: none;
+  border-radius: 55px;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  -webkit-border-radius: 55px;
+  -moz-border-radius: 55px;
+  -ms-border-radius: 55px;
+  -o-border-radius: 55px;
+}
+
+.editar-submit:hover {
+  background-color: #2db54f;
+}
+
+/* Mensaje de error */
+.error-message {
+  color: #fff;
+  font-size: 1.1em;
+  margin: 0;
+  display: none;
+}

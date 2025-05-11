@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modificar Mascota</title>
+  <link rel="stylesheet" href="./css/stylesXSR.css">
+  <link rel="stylesheet" href="./css/editarXSR.css">
+</head>
+<body>
+  <div class="container view-editar">
+    <img src="/imgs/bg.svg" alt="Fondo general" class="bg bg-general">
+    <div id="editarView" class="static-content">
+      <header>
+        <button id="backEditarBtn" class="back-btn">
+          <img src="/imgs/btn-back.svg" alt="Volver" class="back-icon">
+        </button>
+        <h2>Modificar Mascota</h2>
+        <button id="closeEditarBtn" class="close-btn">
+          <img src="/imgs/btn-close.svg" alt="Cerrar" class="close-icon">
+        </button>
+      </header>
+      <div id="editarCard" class="editar-card">
+        <div class="editar-image">
+          <img src="" alt="Foto de la mascota" id="editarFoto" class="mascota-img">
+        </div>
+        <form id="editarForm" class="editar-form">
+          <div class="editar-field">
+           
+            <div class="editar-label">Nombre:</div>
+            <input type="text" id="nombre" class="editar-input" required>
+          </div>
+          <div class="editar-field">
+          
+            <div class="editar-label">Raza:</div>
+            <select id="raza" class="editar-input" required></select>
+          </div>
+          <div class="editar-field">
+           
+            <div class="editar-label">Categoría:</div>
+            <select id="categoria" class="editar-input" required></select>
+          </div>
+          <div class="editar-field">
+           
+            <div class="editar-label">Género:</div>
+            <select id="genero" class="editar-input" required></select>
+          </div>
+          <div class="editar-field">
+            
+            <div class="editar-label">Usuario:</div>
+            <select id="usuario" class="editar-input" required></select>
+          </div>
+          <div class="editar-field">
+           
+            <div class="editar-label">Estado:</div>
+            <select id="estado" class="editar-input" required>
+              <option value="activo">Adoptado</option>
+              <option value="inactivo">Disponible</option>
+            </select>
+          </div>
+          <div class="editar-field">
+          
+            <div class="editar-label"> Foto:</div>
+            <input type="file" id="foto" class="editar-input" accept="image/*">
+          </div>
+          <button type="submit" class="editar-submit">Modificar</button>
+        </form>
+      </div>
+      <p id="errorMessage" class="error-message"></p>
+    </div>
+  </div>
+  <script src="/js/editarXSR.js"></script>
+</body>
+</html>

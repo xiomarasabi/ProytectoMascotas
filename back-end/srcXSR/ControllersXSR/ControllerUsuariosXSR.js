@@ -4,7 +4,7 @@ import bcrypt from "bcryptjs";
 const prisma = new PrismaClient();
 
 const createUsuarioXSR = async (req, res) => {
-  const { nombre, email, password, mascota_id } = req.body;
+  const { nombre, email, password } = req.body;
 
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -14,7 +14,6 @@ const createUsuarioXSR = async (req, res) => {
         nombre,
         email,
         password: hashedPassword,
-        mascota_id,
       },
     });
 
@@ -28,7 +27,6 @@ const createUsuarioXSR = async (req, res) => {
 const listarUsuariosXSR = async (req, res) => {
   try {
     const usuarios = await prisma.usuarios.findMany({
-      include: { mascotas: true }, 
     });
     res.json(usuarios);
   } catch (error) {
@@ -44,7 +42,6 @@ const obtenerUsuarioPorIdXSR = async (req, res) => {
   try {
     const usuario = await prisma.usuarios.findUnique({
       where: { id },
-      include: { mascotas: true }, 
     });
 
     if (!usuario) return res.status(404).json({ error: "Usuario no encontrado" });
@@ -60,12 +57,12 @@ const actualizarUsuarioXSR = async (req, res) => {
   const id = parseInt(req.params.id);
   if (isNaN(id)) return res.status(400).json({ error: "ID no válido" });
 
-  const { nombre, email, password, mascota_id } = req.body;
+  const { nombre, email, password} = req.body;
 
   try {
     const usuarioActualizado = await prisma.usuarios.update({
       where: { id },
-      data: { nombre, email, password, mascota_id },
+      data: { nombre, email, password },
     });
 
     res.json({ message: "usuario actualizado correctamente" });
@@ -79,13 +76,12 @@ const patchUsuarioXSR = async (req, res) => {
   const id = parseInt(req.params.id);
   if (isNaN(id)) return res.status(400).json({ error: "ID no válido" });
 
-  const { nombre, email, password, mascota_id } = req.body;
+  const { nombre, email, password } = req.body;
 
   const data = {};
   if (nombre !== undefined) data.nombre = nombre;
   if (email !== undefined) data.email = email;
   if (password !== undefined) data.password = password;
-  if (mascota_id !== undefined) data.mascota_id = mascota_id;
 
   try {
     const usuarioActualizado = await prisma.usuarios.update({

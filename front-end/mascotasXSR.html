@@ -14,16 +14,35 @@
       <header>
         <h2>Administrar Mascotas</h2>
         <button id="closeMascotasBtn" class="close-btn">
-        <img src="/imgs/btn-close.svg" alt="Cerrar" class="close-icon">
-      </button>
-      </header>
-      <br>
-      <button id="addMascotaBtn" class="add-btn">
-          <span class="add-icon">+</span>
-          Adicionar
+          <img src="/imgs/btn-close.svg" alt="Cerrar" class="close-icon">
         </button>
+      </header>
+      <button id="addMascotaBtn" class="add-btn">
+        <span class="add-icon">+</span>
+        Adicionar
+      </button>
       <div id="mascotasList" class="mascotas-list">
-        <!-- Las mascotas se agregarán dinámicamente con JavaScript -->
+        <!-- Tarjeta de ejemplo (se llenará dinámicamente con JS) -->
+        <div class="mascota-card">
+          <div class="mascota-info">
+            <img src="http://localhost:3000/public/img/default-pet.jpg" alt="Mascota" class="mascota-img">
+            <div class="mascota-details">
+              <h3>Nombre</h3>
+              <p>Raza</p>
+            </div>
+          </div>
+          <div class="actions">
+            <button class="view-btn" data-id="">
+              <img src="/imgs/btn-show.svg" alt="Ver Detalles">
+            </button>
+            <button class="edit-btn" data-id="">
+              <img src="/imgs/btn-edit.svg" alt="Editar">
+            </button>
+            <button class="delete-btn" data-id="">
+              <img src="/imgs/btn-delete.svg" alt="Eliminar">
+            </button>
+          </div>
+        </div>
       </div>
       <p id="errorMessage" class="error-message"></p>
     </div>

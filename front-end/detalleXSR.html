@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Consultar Mascota</title>
+  <link rel="stylesheet" href="./css/stylesXSR.css">
+  <link rel="stylesheet" href="./css/detalleXSR.css">
+</head>
+<body>
+  <div class="container view-detalle">
+    <img src="/imgs/bg.svg" alt="Fondo general" class="bg bg-general">
+    <div id="detalleView" class="static-content">
+      <header>
+        <button id="backDetalleBtn" class="back-btn" title="Volver">
+          <img src="/imgs/btn-back.svg" alt="Volver" class="back-icon">
+        </button>
+        <h2>Consultar Mascota</h2>
+        <button id="closeDetalleBtn" class="close-btn" title="Cerrar">
+          <img src="/imgs/btn-close.svg" alt="Cerrar" class="close-icon">
+        </button>
+      </header>
+
+      <div id="detalleCard" class="detalle-card">
+        <!-- Foto de la mascota -->
+        <div class="detalle-image">
+          <img src="" alt="Foto de la mascota" id="detalleFoto" class="mascota-img">
+        </div>
+
+        <!-- Información -->
+        <div class="detalle-info">
+          <div class="detalle-field">
+            <div class="detalle-label">Nombre:</div>
+            <p id="detalleNombre" class="detalle-text">-</p>
+          </div>
+          <div class="detalle-field">
+            <div class="detalle-label">Raza:</div>
+            <p id="detalleRaza" class="detalle-text">-</p>
+          </div>
+          <div class="detalle-field">
+            <div class="detalle-label">Categoría:</div>
+            <p id="detalleCategoria" class="detalle-text">-</p>
+          </div>
+          <div class="detalle-field">
+            <div class="detalle-label">Género:</div>
+            <p id="detalleGenero" class="detalle-text">-</p>
+          </div>
+        </div>
+      </div>
+      <p id="errorMessage" class="error-message">Ocurrió un error al cargar los datos</p>
+    </div>
+  </div>
+  <script src="/js/detalleXSR.js"></script>
+</body>
+</html>
